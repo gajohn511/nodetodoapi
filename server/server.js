@@ -15,12 +15,32 @@ app.post("/todos", (req, res) => {
     .save()
     .then(doc => {
       res.send(doc);
-      console.log("I was here");
+      // console.log("I was here");
     })
     .catch(err => {
       // res.send("There was a problem");
       res.status(400).send(err);
     });
+});
+
+app.get("/todo/:id", (req, res) => {
+  var id = req.params.id;
+
+  // try {
+  //   id = parseInt(req.params.id);
+  // } catch (e) {
+  //   return res
+  //     .status(400)
+  //     .send({ respond: "The provided id was not a number" });
+  // }
+
+  Todo.findById(id, (error, doc) => {
+    if (error) {
+      return res.status(400).send({ respond: `Todo was not found by ${id}` });
+    }
+
+    res.status(200).send(doc);
+  });
 });
 
 app.listen(3000, () => {
