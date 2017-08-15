@@ -2,6 +2,7 @@ const mg = require("mongoose");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const _ = require("lodash");
+const bcrypt = require("bcryptjs");
 
 var UserSchema = new mg.Schema({
   email: {
@@ -74,6 +75,19 @@ UserSchema.statics.findByToken = function(token) {
     return thisuser;
   });
 };
+
+UserSchema.pre("save", function(next) {
+  var user = this;
+
+  if (user.isModified("password")) {
+    bcrypt.hash(user.password, 10, (err, hash) => {
+      user.password = hash;
+      next();
+    });
+  } else {
+    next();
+  }
+});
 
 var User = mg.model("user", UserSchema);
 
