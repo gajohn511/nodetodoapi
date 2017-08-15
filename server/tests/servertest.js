@@ -6,7 +6,7 @@ const { app } = require("./../server");
 const { Todo } = require("./../models/todo");
 const { ObjectID } = require("mongodb");
 
-/*
+
 beforeEach(done => {
   Todo.remove({}).then(() => done());
 });
@@ -53,7 +53,7 @@ describe("POST /todos", () => {
   });
 });
 
-*/
+
 
 const todos = [
   {
