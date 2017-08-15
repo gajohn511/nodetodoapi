@@ -21,18 +21,19 @@
             "port": 9222,
             "webRoot": "${workspaceRoot}"
         },
-            {
-                "type": "node",
+        {
+            "type": "node",
             "request": "launch",
             "name": "Launch Program",
             // "program": "${file}"
-            "program" : "${workspaceRoot}\\server\\server.js",
+            // "program" : "${workspaceRoot}\\server\\server.js",
+            "program" : "${workspaceRoot}\\playground\\hashing.js",
             "cwd": "${workspaceRoot}",
             "protocol":"inspector",
             "args": [
                 // "-a=6491 thomas street hollywood"
                 //"-a=33008"
             ]
-            }
+        }
     ]
 }

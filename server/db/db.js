@@ -1,6 +1,6 @@
 const mg = require("mongoose");
-const url = process.env.MONGODB_URI; //"mongodb://127.0.0.1:27017/TodoApp";
-mg.connect(url);
+const url = process.env.MONGODB_URI;
+mg.connect(url, { useMongoClient: true });
 mg.Promise = global.Promise;
 
 module.exports = {

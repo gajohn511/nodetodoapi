@@ -6,10 +6,10 @@ var data = {
 };
 
 var token = jwt.sign(data, "abc123");
-// console.log(token);
+console.log(token);
 
-var decoded = jwt.verify(token, "abc1234");
-console.log("decoded:", decoded);
+// var decoded = jwt.verify(token, "abc1234");
+// console.log("decoded:", decoded);
 
 // var message = "I am number 3";
 // var hash = SHA256(message).toString();
