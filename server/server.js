@@ -47,7 +47,7 @@ app.get("/todo/:id", (req, res) => {
   });
 });
 
-app.delete("/todos/:id", (req, res) => {
+app.delete("/todo/:id", (req, res) => {
   let id = req.params.id;
 
   if (!ObjectID.isValid(id)) {
@@ -67,7 +67,7 @@ app.delete("/todos/:id", (req, res) => {
   });
 });
 
-app.patch("/todos/:id", (req, res) => {
+app.patch("/todo/:id", (req, res) => {
   var id = req.params.id;
   var body = _.pick(req.body, ["text", "completed"]);
 
@@ -92,6 +92,21 @@ app.patch("/todos/:id", (req, res) => {
     })
     .catch(e => {
       res.status(400).send();
+    });
+});
+
+app.post("/users", (req, res) => {
+  // var id = req.params.id;
+  var body = _.pick(req.body, ["email", "password"]);
+
+  var newUser = new User(body);
+  newUser
+    .save()
+    .then(thisuer => {
+      res.send(thisuer);
+    })
+    .catch(err => {
+      res.status(400).send(err);
     });
 });
 
