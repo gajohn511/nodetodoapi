@@ -80,6 +80,7 @@ UserSchema.pre("save", function(next) {
   var user = this;
 
   if (user.isModified("password")) {
+    console.log("password was modified -> hashing password...");
     bcrypt.hash(user.password, 10, (err, hash) => {
       user.password = hash;
       next();
