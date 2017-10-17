@@ -13,6 +13,10 @@ var app = express();
 const port = process.env.PORT;
 app.use(bodyParser.json());
 
+app.get("/", (req, res) => {
+  res.send({ msg: "Server is running" });
+});
+
 app.post("/todos", (req, res) => {
   // console.log(req.body);
   var todo = new Todo({ text: req.body.text });
@@ -25,6 +29,16 @@ app.post("/todos", (req, res) => {
     .catch(err => {
       // res.send("There was a problem");
       res.status(400).send(err);
+    });
+});
+
+app.get("/todos", (req, res) => {
+  Todo.find({})
+    .then(list => {
+      res.status(200).send(list);
+    })
+    .catch(err => {
+      return res.status(400).send(err);
     });
 });
 
